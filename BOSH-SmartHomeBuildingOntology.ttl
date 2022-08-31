@@ -1,4 +1,4 @@
-@prefix bosh: <http://purl.org/bosh#> .
+@prefix : <http://purl.org/bosh#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix ssn: <http://www.w3.org/ns/ssn/> .
@@ -15,15 +15,15 @@
 @base <http://purl.org/bosh> .
 
 <http://purl.org/bosh> rdf:type owl:Ontology ;
-                        dcterms:created "2021-07-14" ;
-                        dcterms:creator "Amelie Gyrard"@en ,
-                                        "Mahda Noura"@en ,
-                                        "Ramesh Gowtham"@en ,
+                        dcterms:creator "Mahda Noura"@en ,
                                         "Vamsee Krishna Kiran Muppavarapu"@en ;
-                        dcterms:description "Ontology covering the concepts related to smart home and smart building domains. Ontology contains sensors, actuators, building entities, measurements and so on."@en ;
-                        dcterms:modified "2021-11-30" ;
+                        dcterms:created "2021-07-14" ;
+                        dcterms:creator "Ramesh Gowtham"@en ,
+                                        "Amelie Gyrard"@en ;
+                        rdfs:comment "Smart Home and Building Upper Ontology developed as part of PhD research work."@en ;
                         dcterms:title "Smart Home and Building Ontology (BOSH)"@en ;
-                        rdfs:comment "Smart Home and Building Upper Ontology developed as part of PhD research work."@en .
+                        dcterms:description "Ontology covering the concepts related to smart home and smart building domains. Ontology contains sensors, actuators, building entities, measurements and so on."@en ;
+                        dcterms:modified "2021-11-30" .
 
 #################################################################
 #    Annotation properties
@@ -148,6 +148,57 @@ bosh:hasSensor rdf:type owl:ObjectProperty ;
                rdfs:range bosh:SensingDevice ;
                rdfs:comment "Property used to map sensors with the respective classes."@en ;
                rdfs:label "has Sensor"@en .
+
+
+###  http://purl.org/bosh#hasUnitOfMeasure
+bosh:hasUnitOfMeasure rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf owl:topObjectProperty ;
+                      rdfs:domain bosh:QuantityKind ;
+                      rdfs:range bosh:Unit ;
+                      rdfs:comment """Every Quantity Kind will have a unit of measure which is of type Unit.
+Example: Temperature is a quantity kind and will have unit of measure as Degree celsius which is of type Unit.""" ;
+                      rdfs:label "has Unit Of Measure" .
+
+
+###  http://purl.org/bosh#measuresQuantity
+bosh:measuresQuantity rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf owl:topObjectProperty ;
+                      rdfs:domain bosh:SensingDevice ;
+                      rdfs:range bosh:QuantityKind ;
+                      rdfs:comment "Every Sensing device has a measurement which is of type QuanityKind. Example TemperatureSensor measuresQuantity Temperature, which is a quantity kind." ;
+                      rdfs:label "measures Quantity" .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://purl.org/bosh#hasDescription
+bosh:hasDescription rdf:type owl:DatatypeProperty ;
+                    rdfs:subPropertyOf owl:topDataProperty ;
+                    rdfs:domain bosh:Device ;
+                    rdfs:range rdfs:Literal .
+
+
+###  http://purl.org/bosh#hasUniqueID
+bosh:hasUniqueID rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf owl:topDataProperty ;
+                 rdfs:domain bosh:Device ;
+                 rdfs:range rdfs:Literal .
+
+
+###  http://purl.org/bosh#hasUnitValue
+bosh:hasUnitValue rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf owl:topDataProperty ;
+                  rdfs:domain bosh:Unit ;
+                  rdfs:range rdfs:Literal .
+
+
+###  http://purl.org/bosh#hasValue
+bosh:hasValue rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf owl:topDataProperty ;
+              rdfs:domain bosh:QuantityKind ;
+              rdfs:range rdfs:Literal .
 
 
 #################################################################
@@ -951,11 +1002,6 @@ bosh:DustSensor rdf:type owl:Class ;
                 rdfs:comment "A sensing device that measures dust particle concentration."@en ;
                 rdfs:label "Dust Sensor"@en .
 
-###  http://purl.org/bosh#MotionSensor
-bosh:MotionSensor rdf:type owl:Class ;
-                rdfs:subClassOf bosh:SensingDevice ;
-                rdfs:comment "A sensing device that detects motion in an environment. Example a person moving within a room."@en ;
-                rdfs:label "Motion Sensor"@en .
 
 ###  http://purl.org/bosh#ElectricCharge
 bosh:ElectricCharge rdf:type owl:Class ;
@@ -1706,6 +1752,13 @@ bosh:Mobile rdf:type owl:Class ;
             skos:altLabel "Mobile Phone"@en .
 
 
+###  http://purl.org/bosh#MotionSensor
+bosh:MotionSensor rdf:type owl:Class ;
+                  rdfs:subClassOf bosh:SensingDevice ;
+                  rdfs:comment "A sensing device that detects motion in an environment. Example a person moving within a room."@en ;
+                  rdfs:label "Motion Sensor"@en .
+
+
 ###  http://purl.org/bosh#NFC
 bosh:NFC rdf:type owl:Class ;
          owl:equivalentClass m3lite:NFC ;
@@ -2378,6 +2431,13 @@ bosh:Temperature rdf:type owl:Class ;
                               <http://purl.oclc.org/NET/ssnx/meteo/aws#air_temperature> .
 
 
+###  http://purl.org/bosh#TemperatureHumiditySensor
+bosh:TemperatureHumiditySensor rdf:type owl:Class ;
+                               rdfs:subClassOf bosh:SensingDevice ;
+                               rdfs:comment "Temperature and Humidity sensor is an instrument used for measuring both temperature and humidity in an environment. Example DHT22"@en ;
+                               rdfs:label "Temperature Humidity Sensor"@en .
+
+
 ###  http://purl.org/bosh#TemperatureSensor
 bosh:TemperatureSensor rdf:type owl:Class ;
                        rdfs:subClassOf bosh:SensingDevice ;
@@ -2385,11 +2445,6 @@ bosh:TemperatureSensor rdf:type owl:Class ;
                        rdfs:label "Temperature Sensor"@en ;
                        rdfs:seeAlso saref:TemperatureSensor .
 
-###  http://purl.org/bosh#TemperatureHumiditySensor
-bosh:TemperatureHumiditySensor rdf:type owl:Class ;
-                       rdfs:subClassOf bosh:SensingDevice ;
-                       rdfs:comment "Temperature and Humidity sensor is an instrument used for measuring both temperature and humidity in an environment. Example DHT22"@en ;
-                       rdfs:label "Temperature Humidity Sensor"@en .
 
 ###  http://purl.org/bosh#TemperatureWasteContainer
 bosh:TemperatureWasteContainer rdf:type owl:Class ;
@@ -2976,4 +3031,4 @@ bosh:Siren rdfs:label "Siren"@en ;
                          "Warning Sound"@en .
 
 
-###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
+###  Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi
