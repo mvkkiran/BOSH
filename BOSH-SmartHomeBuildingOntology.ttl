@@ -2385,6 +2385,11 @@ bosh:TemperatureSensor rdf:type owl:Class ;
                        rdfs:label "Temperature Sensor"@en ;
                        rdfs:seeAlso saref:TemperatureSensor .
 
+###  http://purl.org/bosh#TemperatureHumiditySensor
+bosh:TemperatureHumiditySensor rdf:type owl:Class ;
+                       rdfs:subClassOf bosh:SensingDevice ;
+                       rdfs:comment "Temperature and Humidity sensor is an instrument used for measuring both temperature and humidity in an environment. Example DHT22"@en ;
+                       rdfs:label "Temperature Humidity Sensor"@en .
 
 ###  http://purl.org/bosh#TemperatureWasteContainer
 bosh:TemperatureWasteContainer rdf:type owl:Class ;
