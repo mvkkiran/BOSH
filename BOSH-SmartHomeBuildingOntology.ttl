@@ -951,6 +951,11 @@ bosh:DustSensor rdf:type owl:Class ;
                 rdfs:comment "A sensing device that measures dust particle concentration."@en ;
                 rdfs:label "Dust Sensor"@en .
 
+###  http://purl.org/bosh#MotionSensor
+bosh:MotionSensor rdf:type owl:Class ;
+                rdfs:subClassOf bosh:SensingDevice ;
+                rdfs:comment "A sensing device that detects motion in an environment. Example a person moving within a room."@en ;
+                rdfs:label "Motion Sensor"@en .
 
 ###  http://purl.org/bosh#ElectricCharge
 bosh:ElectricCharge rdf:type owl:Class ;
