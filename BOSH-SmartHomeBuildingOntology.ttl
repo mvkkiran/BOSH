@@ -150,6 +150,15 @@ bosh:hasSensor rdf:type owl:ObjectProperty ;
                rdfs:label "has Sensor"@en .
 
 
+###  http://purl.org/bosh#hasState
+bosh:hasState rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf owl:topObjectProperty ;
+              rdfs:domain bosh:Device ;
+              rdfs:range bosh:State ;
+              rdfs:comment "state of a device. on/off or start/stop" ;
+              rdfs:label "has State" .
+
+
 ###  http://purl.org/bosh#hasUnitOfMeasure
 bosh:hasUnitOfMeasure rdf:type owl:ObjectProperty ;
                       rdfs:subPropertyOf owl:topObjectProperty ;
@@ -178,6 +187,13 @@ bosh:hasDescription rdf:type owl:DatatypeProperty ;
                     rdfs:subPropertyOf owl:topDataProperty ;
                     rdfs:domain bosh:Device ;
                     rdfs:range rdfs:Literal .
+
+
+###  http://purl.org/bosh#hasStateValue
+bosh:hasStateValue rdf:type owl:DatatypeProperty ;
+                   rdfs:subPropertyOf owl:topDataProperty ;
+                   rdfs:domain bosh:State ;
+                   rdfs:range rdfs:Literal .
 
 
 ###  http://purl.org/bosh#hasUniqueID
@@ -2333,7 +2349,7 @@ bosh:StartState rdf:type owl:Class ;
 bosh:StartStopState rdf:type owl:Class ;
                     rdfs:subClassOf bosh:State ;
                     rdfs:comment "Indicates the Start or Stop state of an actuator."@en ;
-                    rdfs:label ""@en .
+                    rdfs:label "Start Stop State"@en .
 
 
 ###  http://purl.org/bosh#State
