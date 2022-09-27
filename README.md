@@ -20,8 +20,11 @@ http://purl.org/bosh/documentation
 
 ### Authors
 Vamsee Muppavarapu - https://scholar.google.com/citations?user=5w4Ry4MAAAAJ&hl
+
 Gowtham Ramesh - https://scholar.google.com/citations?hl=en&user=0nx8zcUAAAAJ
+
 Amelie Gyrard
+
 Mahda Noura
 
 ### Acknowledgement
