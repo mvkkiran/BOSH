@@ -1,4 +1,4 @@
-# BOSH
+# BOSH - Smart Home and Building Ontology
 
 Smart Home and Building Ontology (BOSH) is a interoperable smart home domain ontology that combines concepts extracted from 16 popular IoT ontologies.
 The ontology consists of concepts related to sensors, actuators, devices, appliances, observations and their measurements. 
